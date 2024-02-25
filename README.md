@@ -7,12 +7,10 @@ The Automated Attendance System using Facial Recognition is a project aimed at s
 
 ## Features
 
-- **Facial Recognition**: The system utilizes facial recognition algorithms to identify and mark the attendance of students present in the classroom.
+- **Facial Recognition**: The system utilizes facial recognition models to identify and mark the attendance of students present in the classroom.
 - **Prototype Version**: We have developed a prototype version capable of recognizing groups of 4 people simultaneously.
 - **Hardware Setup**: Raspberry Pi is employed for real-time deployment. The official camera module provided by Raspberry Pi is used for capturing classroom images.
-  
 - **Student Data Management**: The system captures details of students via the camera. These details are then updated on a Google Sheet, ensuring efficient data management.
-
 - **Notification System**: A Telegram bot is integrated into the system for notification purposes. It logs messages related to attendance and sends alerts for students with attendance below 75%.
 
 ## Technologies Used
@@ -47,6 +45,8 @@ The Automated Attendance System using Facial Recognition is a project aimed at s
     cd automated-attendance-system
     python face_main.py
     ```
+
+      **Note**: Before running the script, ensure to configure confidential information such as API keys and access tokens in the appropriate configuration files.        Certain characters in the configuration files have been changed for security purposes.
 
 5. **Monitor Output**: The system will start capturing image, perform facial recognition, and update attendance data. Monitor the terminal output for any errors or status messages.
 

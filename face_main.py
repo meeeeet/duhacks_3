@@ -15,13 +15,13 @@ import RPi.GPIO as GPIO
 from google.oauth2.service_account import Credentials
 
 # DATA
-test_img_path="M:/DDU/SEM 6/TP/SEM-VI_Term_Project/Auto-Attendance/face_extract/img/face_55.jpg"
-pretrained_model='C:/Users/Administrator/Downloads/face_recognition_model.h5'
-extracted_faces='C:/Users/Administrator/OneDrive/Desktop/TEMP'
+test_img_path="M:/DDU/SEM 6/TP/SEM-VI_Term_Project/Auto-Attendance/face_extract/img/face_55.jpg"   # Image Path
+pretrained_model='C:/Users/Administrator/Downloads/face_recognition_model.h5'                      # Model Path
+extracted_faces='C:/Users/Administrator/OneDrive/Desktop/Extracted'
 
 # TELEGRAM
-bot_token = '7146124828:AAGhgu_ZWZ-y7ObNXbgal-mFS1Y-RHObSY8'
-user_chat_id = ['1953374962','661067276','868836142'] # Gaurang:1953374962 Meet:661067276 Viraj:868836142
+bot_token = '7146124828:AAGhgu_ZWZ-y7ObNXbgal-mFS1Y'                                                # Dummy token
+user_chat_id = ['19533374962','6610367276','8688336142'] 
 user_sel=1
 warn_msg=['[WARNING] Photo isn\'t clear.']
 update_msg=['Updating google sheet...']
@@ -31,7 +31,7 @@ cred_file="C:/Users/Administrator/Downloads/face-sheet-415304-a148ef94ac7b.json"
 scopes = ["https://www.googleapis.com/auth/spreadsheets"]
 creds = Credentials.from_service_account_file(cred_file, scopes=scopes)
 client = gspread.authorize(creds)
-sheet_id = "1HDq-JBpx3KvIj_S3YKmnelfzCtf-tUdPdo-RIHmjTmY"
+sheet_id = "1HDq-JBpx3KvIj_S3YKmnelfzCtf-tUdPdo-RIHmY"
 
 
 # STUDENT DATA
@@ -146,7 +146,6 @@ def face_rasp(student_id):
             worksht.update('C{}'.format(last_row), [[row[0]]])
             worksht.update('D{}'.format(last_row), [[row[1]]])
             worksht.update('E{}'.format(last_row), [[row[2]]])
-            # Move to the next row
             last_row += 1
         asyncio.run(send_telegram_messages(['Done!!!'],user_chat_id[user_sel]))
     else:
@@ -162,7 +161,6 @@ def face_rasp(student_id):
     detained_stdid = []
     for i, percentage in enumerate(ratt_percentage):
         if float(percentage) < 75:
-            # If the attendance percentage is less than 75, add the corresponding ID to detained_stdid list
             detained_stdid.append(ratt_id[i])
 
     # Print the detained student IDs
@@ -201,14 +199,12 @@ GPIO.setmode(GPIO.BCM)
 led_pin = 18
 button_pin = 17
 start_pin = 23
-# Set up the LED pin as an output
 GPIO.setup(led_pin, GPIO.OUT)
 GPIO.setup(start_pin, GPIO.OUT)
 GPIO.setup(button_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 try:
     while True:
-        # Check if the button is pressed
         if GPIO.input(button_pin) == GPIO.HIGH:
             # Turn on the LED
             GPIO.output(led_pin, GPIO.HIGH)
@@ -221,7 +217,6 @@ try:
             GPIO.output(led_pin, GPIO.LOW)
             GPIO.output(start_pin, GPIO.HIGH)
             print("WAITING PUSH BUTTON TO BE PRESSED...")
-        # Add a small delay to debounce the button
         time.sleep(0.1)
 finally:
     # Clean up GPIO pins

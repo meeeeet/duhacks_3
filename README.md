@@ -60,7 +60,7 @@ The Automated Attendance System using Facial Recognition is a project aimed at s
 
 ## Google Sheet
 
-- [Attendance Google Sheet](https://docs.google.com/spreadsheets/d/your_sheet_id/edit) - View the Google Sheet where attendance data is updated in real-time.
+- [Attendance Google Sheet](https://docs.google.com/spreadsheets/d/1HDq-JBpx3KvIj_S3YKmnelfzCtf-tUdPdo-RIHmjTmY/edit?usp=sharing) - View the Google Sheet where attendance data is updated in real-time.
 
 ## Contributors
 1. Meet Sangani
